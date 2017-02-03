@@ -1,0 +1,260 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/list_item"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:theme="@style/AppTheme.NoActionBar"
+    tools:ignore="PrivateResource">
+
+    <ImageView
+        android:id="@+id/profile"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_alignParentStart="true"
+        android:layout_margin="3dp"
+        tools:ignore="RtlCompat" />
+
+    <ImageView
+        android:id="@+id/love"
+        android:layout_width="26dp"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/content"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentTop="true"
+        android:src="@drawable/love"
+        android:visibility="gone" />
+
+    <ImageView
+        android:id="@+id/retweet"
+        android:layout_width="26dp"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/content"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentTop="true"
+        android:src="@drawable/retweet"
+        android:visibility="gone" />
+
+    <ImageView
+        android:id="@+id/loveTop"
+        android:layout_width="26dp"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/content"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentTop="true"
+        android:src="@drawable/love_top"
+        android:visibility="gone" />
+
+
+    <TextView
+        android:id="@+id/name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@+id/profile"
+        android:layout_toRightOf="@+id/profile"
+        android:text="Larry"
+        android:textColor="@color/RealBlack"
+        android:textSize="14sp"
+        android:textStyle="bold"
+        tools:ignore="SmallSp" />
+
+    <TextView
+        android:id="@+id/screenName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/name"
+        android:layout_marginLeft="3dp"
+        android:layout_toRightOf="@+id/name"
+        android:ellipsize="end"
+        android:singleLine="true"
+        android:text="\@larry"
+        android:textSize="12sp" />
+
+    <ImageView
+        android:id="@+id/lock"
+        android:layout_width="17dp"
+        android:layout_height="17dp"
+        android:layout_alignTop="@+id/name"
+        android:layout_toEndOf="@+id/screenName"
+        android:src="@drawable/ic_lock_black"
+        android:visibility="invisible"
+        tools:ignore="RtlCompat" />
+    <!-- 콘텐트-->
+
+    <RelativeLayout
+        android:id="@+id/content"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/name"
+        android:layout_toRightOf="@+id/profile">
+
+
+        <TextView
+            android:id="@+id/contentText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="1dp"
+            android:textColor="@color/RealBlack"
+            android:textSize="16sp" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/contentText"
+            android:orientation="vertical">
+
+            <RelativeLayout
+                android:id="@+id/qoutePanels"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/round"
+                android:padding="8dp"
+                android:visibility="gone">
+
+                <TextView
+                    android:id="@+id/qouteName"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Larry"
+                    android:textColor="@color/RealBlack"
+                    android:textSize="14sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/qouteScreenName"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignBaseline="@+id/qouteName"
+                    android:layout_marginLeft="3dp"
+                    android:layout_toRightOf="@+id/qouteName"
+                    android:text="\@larry"
+                    android:textSize="13sp" />
+
+                <TextView
+                    android:id="@+id/QContent"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/qouteName"
+                    android:layout_marginTop="3dp"
+                    android:text="Life In Twitter."
+                    android:textSize="16sp" />
+
+                <RelativeLayout
+                    android:id="@+id/qouteImagePanel"
+                    android:layout_width="match_parent"
+                    android:layout_height="74dp"
+                    android:maxWidth="296dp"
+                    android:visibility="gone">
+
+                    <ImageView
+                        android:id="@+id/qouteImage1"
+                        android:layout_width="74dp"
+                        android:layout_height="74dp"
+                        android:padding="1dp"
+                        android:scaleType="centerCrop" />
+
+                    <ImageView
+                        android:id="@+id/qouteImage2"
+                        android:layout_width="74dp"
+                        android:layout_height="74dp"
+                        android:layout_toRightOf="@+id/qouteImage1"
+                        android:padding="1dp"
+                        android:scaleType="centerCrop" />
+
+                    <ImageView
+                        android:id="@+id/qouteImage3"
+                        android:layout_width="74dp"
+                        android:layout_height="74dp"
+                        android:layout_toRightOf="@+id/qouteImage2"
+                        android:padding="1dp"
+                        android:scaleType="centerCrop" />
+
+                    <ImageView
+                        android:id="@+id/qouteImage4"
+                        android:layout_width="74dp"
+                        android:layout_height="74dp"
+                        android:layout_toRightOf="@+id/qouteImage3"
+                        android:padding="1dp"
+                        android:scaleType="centerCrop" />
+                </RelativeLayout>
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/imagePanel"
+                android:layout_width="match_parent"
+                android:layout_height="76dp"
+                android:maxWidth="304dp"
+                android:visibility="gone">
+
+                <ImageView
+                    android:id="@+id/image1"
+                    android:layout_width="76dp"
+                    android:layout_height="76dp"
+                    android:padding="1dp"
+                    android:scaleType="centerCrop" />
+
+                <ImageView
+                    android:id="@+id/image2"
+                    android:layout_width="76dp"
+                    android:layout_height="76dp"
+                    android:layout_toRightOf="@+id/image1"
+                    android:padding="1dp"
+                    android:scaleType="centerCrop" />
+
+                <ImageView
+                    android:id="@+id/image3"
+                    android:layout_width="76dp"
+                    android:layout_height="76dp"
+                    android:layout_toRightOf="@+id/image2"
+                    android:padding="1dp"
+                    android:scaleType="centerCrop" />
+
+                <ImageView
+                    android:id="@+id/image4"
+                    android:layout_width="76dp"
+                    android:layout_height="76dp"
+                    android:layout_toRightOf="@+id/image3"
+                    android:padding="1dp"
+                    android:scaleType="centerCrop" />
+
+            </RelativeLayout>
+
+            <TextView
+                android:id="@+id/retweetPanel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:ellipsize="end"
+                android:singleLine="true"
+                android:textSize="11sp"
+                tools:ignore="IncludeLayoutParam,SmallSp" />
+        </LinearLayout>
+
+    </RelativeLayout>
+
+
+    <!-- Via 부분-->
+
+    <TextView
+        android:id="@+id/via"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/content"
+        android:layout_marginTop="3dp"
+        android:layout_toRightOf="@+id/profile"
+        android:text="Via- Clooter"
+        android:textSize="11sp" />
+
+    <TextView
+        android:id="@+id/time"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/content"
+        android:layout_marginLeft="4dp"
+        android:layout_marginTop="3dp"
+        android:layout_toRightOf="@+id/via"
+        android:text="Now"
+        android:textSize="11sp" />
+
+
+</RelativeLayout>

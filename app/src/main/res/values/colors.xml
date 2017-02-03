@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#55acee</color>
+    <color name="colorPrimaryDark">#55acee</color>
+    <color name="colorAccent">#FF4081</color>
+    <color name="ClickColorPrimary">#55ACFF</color>
+    <color name="RealBlack">#000000</color>
+    <color name="TwitterBlack">#292f33</color>
+    <color name="TwitterGray">#66757f</color>
+    <color name="white">#ffffff</color>
+    <color name="white_pressed">#f1f1f1</color>
+    <color name="TwitterWhite">#e1e8ed</color>
+    <color name="TwitterWhiteGray">#ccd6dd</color>
+</resources>

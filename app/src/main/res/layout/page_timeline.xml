@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:fab="http://schemas.android.com/apk/res-auto">
+
+    <android.support.design.widget.CoordinatorLayout
+        android:id="@+id/main_content"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@+id/panel">
+
+        <ListView
+            android:id="@+id/list"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
+        <com.moon.cinnamon.floatbutton.FloatingActionsMenu
+            android:id="@+id/tweetAc"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom|right"
+            android:layout_marginBottom="3dp"
+            fab:fab_menuicon="@mipmap/ic_edit"
+            fab:fab_addButtonStrokeVisible="false"
+            fab:fab_addButtonSize="normal"
+            fab:fab_expandDirection="left"
+            fab:fab_addButtonColorPressed="@color/colorPrimaryDark"
+            fab:fab_addButtonColorNormal="@color/colorPrimary">
+
+        </com.moon.cinnamon.floatbutton.FloatingActionsMenu>
+    </android.support.design.widget.CoordinatorLayout>
+
+    <RelativeLayout
+        android:id="@+id/panel"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true">
+
+        <ImageView
+            android:id="@+id/profile"
+            android:layout_width="48dp"
+            android:layout_height="48dp" />
+
+        <Button
+            android:id="@+id/send"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true" />
+
+        <EditText
+            android:id="@+id/content"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:windowSoftInputMode="adjustResize"
+            android:layout_alignParentTop="true"
+            android:layout_toEndOf="@+id/profile" />
+    </RelativeLayout>
+</RelativeLayout>
