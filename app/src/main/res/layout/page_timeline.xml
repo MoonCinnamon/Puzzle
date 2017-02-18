@@ -2,7 +2,7 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:fab="http://schemas.android.com/apk/res-auto">
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <android.support.design.widget.CoordinatorLayout
         android:id="@+id/main_content"
@@ -10,25 +10,39 @@
         android:layout_height="match_parent"
         android:layout_above="@+id/panel">
 
-        <ListView
-            android:id="@+id/list"
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/timeline"
             android:layout_width="match_parent"
-            android:layout_height="match_parent" />
+            android:layout_height="match_parent"
+            />
+        <!--
+                <com.moon.cinnamon.floatbutton.FloatingActionsMenu
+                    android:id="@+id/tweetAc"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="bottom|right"
+                    android:layout_marginBottom="3dp"
+                    fab:fab_menuicon="@mipmap/ic_edit"
+                    fab:fab_addButtonStrokeVisible="false"
+                    fab:fab_addButtonSize="normal"
+                    fab:fab_expandDirection="left"
+                    fab:fab_addButtonColorPressed="@color/colorPrimaryDark"
+                    fab:fab_addButtonColorNormal="@color/colorPrimary">
 
-        <com.moon.cinnamon.floatbutton.FloatingActionsMenu
-            android:id="@+id/tweetAc"
+                </com.moon.cinnamon.floatbutton.FloatingActionsMenu>-->
+
+
+        <android.support.design.widget.FloatingActionButton
+            android:id="@+id/open"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="bottom|right"
-            android:layout_marginBottom="3dp"
-            fab:fab_menuicon="@mipmap/ic_edit"
-            fab:fab_addButtonStrokeVisible="false"
-            fab:fab_addButtonSize="normal"
-            fab:fab_expandDirection="left"
-            fab:fab_addButtonColorPressed="@color/colorPrimaryDark"
-            fab:fab_addButtonColorNormal="@color/colorPrimary">
+            android:layout_gravity="bottom|end"
+            android:layout_margin="@dimen/fab_margin"
+            app:layout_behavior="com.cinnamon.moon.puzzle.Util.HideFloating"
+            app:backgroundTint="@color/colorPrimary"
+            app:fab_size="mini"
+            android:src="@mipmap/ic_edit" />
 
-        </com.moon.cinnamon.floatbutton.FloatingActionsMenu>
+        <include layout="@layout/inside_fab" />
     </android.support.design.widget.CoordinatorLayout>
 
     <RelativeLayout

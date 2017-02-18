@@ -2,7 +2,7 @@
 <resources>
     <color name="colorPrimary">#55acee</color>
     <color name="colorPrimaryDark">#55acee</color>
-    <color name="colorAccent">#FF4081</color>
+    <color name="colorAccent">#55acee</color>
     <color name="ClickColorPrimary">#55ACFF</color>
     <color name="RealBlack">#000000</color>
     <color name="TwitterBlack">#292f33</color>

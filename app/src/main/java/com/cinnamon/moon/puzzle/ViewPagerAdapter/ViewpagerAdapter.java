@@ -1,5 +1,6 @@
 package com.cinnamon.moon.puzzle.ViewPagerAdapter;
 
+import android.content.Context;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
@@ -9,9 +10,13 @@ import android.util.SparseArray;
 import android.view.ViewGroup;
 
 import com.astuetz.PagerSlidingTabStrip;
+import com.cinnamon.moon.puzzle.Login.LoginData;
 import com.cinnamon.moon.puzzle.R;
 
+import twitter4j.Status;
+
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by Moon-Cinnamon on 2016. 3. 7..
@@ -20,14 +25,23 @@ public class ViewpagerAdapter extends FragmentPagerAdapter implements PagerSlidi
 
     private ArrayList<Integer> Icon;
     private Fragment mCurrentFragment;
-    //    private ArrayList<TimeLineFragment> adapter;
-    private SparseArray<Fragment> adapter;
+    private ArrayList<Status> statuslist;
+    private SparseArray<TimeLineFragment> adapter;
+    private SparseArray<Recycler_View_Adapter> list_adapter;
+    private Context context;
 
-    public ViewpagerAdapter(FragmentManager fm) {
+    public ViewpagerAdapter(Context context, FragmentManager fm) {
         super(fm);
         Icon = new ArrayList<>();
-//        adapter = new ArrayList<>();
+        this.context = context;
         adapter = new SparseArray<>();
+        list_adapter = new SparseArray<>();
+    }
+
+    public void addPage(int position) {
+        adapter.put(position, new TimeLineFragment());
+        list_adapter.put(position, new Recycler_View_Adapter(context));
+        notifyDataSetChanged();
     }
 
     @Override
@@ -39,16 +53,18 @@ public class ViewpagerAdapter extends FragmentPagerAdapter implements PagerSlidi
     }
 
     @Override
-    public Fragment getItem(int position) {
-        return adapter.get(position);
+    public TimeLineFragment getItem(int position) {
+        Log.d("itemnumber", String.valueOf(position));
+        TimeLineFragment fragment = adapter.get(position);
+        return fragment.newInstance(position, "home", list_adapter);
     }
 
-    @Override
-    public Object instantiateItem(ViewGroup container, int position) {
-        Fragment fragment = (Fragment) super.instantiateItem(container, position);
-        adapter.put(position, fragment);
-        return fragment;
+
+    public void addTweet(int position, List<Status> status) {
+        Log.d("tweetSize", String.valueOf(status.size()));
+        list_adapter.get(position).addAll(status);
     }
+
     @Override
     public int getItemPosition(Object object) {
         return PagerAdapter.POSITION_NONE;
@@ -63,7 +79,6 @@ public class ViewpagerAdapter extends FragmentPagerAdapter implements PagerSlidi
     //뷰를 더하는 부분이다 이 부분도 딱히 의미는 없는거 같다
     /*
     public void addView(int value) {
-        adapter.add(new TimeLineFragment(value));
         switch (value % 10) {
             case 0:
                 Icon.add(R.drawable.ic_alarm);

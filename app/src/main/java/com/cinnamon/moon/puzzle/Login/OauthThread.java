@@ -56,7 +56,7 @@ public class OauthThread implements Callable<AccessToken> {
                 twitter.setOAuthConsumer(array[3], array[4]);
                 twitter.setOAuthAccessToken(accessToken);
                 LoginData.setTwitter(LoginData.getNum(), twitter);
-                LoginData.setUser(LoginData.getNum(), twitter.showUser(twitter.getId()));
+                LoginData.setUser(LoginData.getNum()-1, twitter.showUser(twitter.getId()));
             }
         } catch (TwitterException e) {
             e.printStackTrace();

@@ -24,14 +24,19 @@ import com.cinnamon.moon.puzzle.Login.LoginData;
 import com.cinnamon.moon.puzzle.Login.OauthThread;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.Future;
 
+import com.cinnamon.moon.puzzle.TimeLine.HomeTimeLine;
 import com.cinnamon.moon.puzzle.TimeLine.TimeLine_Adapter;
 import com.cinnamon.moon.puzzle.Util.Tweet;
+import com.cinnamon.moon.puzzle.ViewPagerAdapter.TimeLineFragment;
 import com.cinnamon.moon.puzzle.ViewPagerAdapter.ViewpagerAdapter;
+
+import twitter4j.Status;
 import twitter4j.auth.AccessToken;
 
 public class MainActivity extends AppCompatActivity
@@ -42,7 +47,7 @@ public class MainActivity extends AppCompatActivity
     private PreferencesUtils prefUtils;
     private ArrayList<String> userflow;
     private Tweet tweet;
-    private Handler handler;
+    public Handler handler;
     private ViewPager pager;
     private ViewpagerAdapter adapter;
     private ArrayList<TimeLine_Adapter> adapterlist;
@@ -58,36 +63,17 @@ public class MainActivity extends AppCompatActivity
 
         userflow = new ArrayList<>();
 
-        handler = new Handler() {
-            @Override
-            public void handleMessage(Message msg) {
-//                content.setText("");
-            }
-        };
-
         adapterlist = new ArrayList<>();
-
         pager = (ViewPager) findViewById(R.id.MainView);
-        adapter = new ViewpagerAdapter(getSupportFragmentManager());
+        adapter = new ViewpagerAdapter(getApplicationContext(), getSupportFragmentManager());
         pager.setAdapter(adapter);
-
         tweet = new Tweet(handler);
-
 
         executorService = Executors.newFixedThreadPool(
                 Runtime.getRuntime().availableProcessors()
         );
 
         sqlU = new SqlUtils(getApplicationContext(), "puzzle.db", null, 1);
-
-//        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-//        fab.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-//                        .setAction("Action", null).show();
-//            }
-//        });
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
@@ -98,16 +84,35 @@ public class MainActivity extends AppCompatActivity
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
 
+//        case 0 은 아이템 추가
+        handler = new Handler() {
+            @Override
+            public void handleMessage(Message msg) {
+                switch (msg.what) {
+                    case 0:
+                        Log.d("호출됨","main");
+                        List<Status> list = (List<Status>) msg.obj;
+                        Log.d("size", String.valueOf(list.size()));
+                        adapter.addTweet(0, (List<Status>) msg.obj);
+                        break;
+                    case 1:
+                        break;
+                }
+            }
+        };
+
         if (prefUtils.getLoginInfo()) {
             ArrayList<String> list = prefUtils.getData("userflow");
-            makePage();
+            ArrayList<String> page = prefUtils.getData(list.get(0));
+            Log.d("user", list.get(0) + " page : " + page.size());
+            makePage(page);
             for (String id : list) {
                 OauthThread oauth = new OauthThread(sqlU.getData(id));
                 Future<AccessToken> futAccess = executorService.submit(oauth);
                 try {
                     //로그인이 끝난 시점 여기서 행동을 한다.
                     if (futAccess.get() != null) {
-
+                        new HomeTimeLine(handler, LoginData.getTwitter(0)).start();
                     }
                 } catch (InterruptedException | ExecutionException e) {
                     e.printStackTrace();
@@ -117,13 +122,15 @@ public class MainActivity extends AppCompatActivity
             Intent intent = new Intent(getApplicationContext(), LoginActivity.class);
             startActivityForResult(intent, 831);
         }
+
+
     }
 
-    public void makePage() {
+    public void makePage(ArrayList<String> list) {
         //viewpager page 추가 메소드를 구현한다.
-        for (int view = 0; view < LoginData.getPage().size(); view++) {
+        for (int view = 0; view < list.size(); view++) {
 //            String value = LoginData.getPage().get(view);
-
+            adapter.addPage(view);
             TimeLine_Adapter adapter = new TimeLine_Adapter(getApplicationContext(), R.layout.view_timeline_item, getSupportFragmentManager());
             adapterlist.add(adapter);
 //            AdapterSetter.setAdapter(value, new List_adapter(adapter_data));
@@ -149,7 +156,7 @@ public class MainActivity extends AppCompatActivity
                 //수정요망
                 LoginData.setPage(page);
                 prefUtils.setLoginInfo(true);
-                makePage();
+//                makePage();
             } else if (requestCode == 74) {
                 login(pinnumber, page);
             }

@@ -2,8 +2,8 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/list_item"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
     android:theme="@style/AppTheme.NoActionBar"
     tools:ignore="PrivateResource">
 
@@ -22,8 +22,9 @@
         android:layout_above="@+id/content"
         android:layout_alignParentRight="true"
         android:layout_alignParentTop="true"
-        android:src="@drawable/love"
         android:visibility="gone" />
+
+    <!--android:src="@drawable/love"-->
 
     <ImageView
         android:id="@+id/retweet"
@@ -32,9 +33,10 @@
         android:layout_above="@+id/content"
         android:layout_alignParentRight="true"
         android:layout_alignParentTop="true"
-        android:src="@drawable/retweet"
         android:visibility="gone" />
 
+
+    <!--android:src="@drawable/retweet"-->
     <ImageView
         android:id="@+id/loveTop"
         android:layout_width="26dp"
@@ -42,10 +44,10 @@
         android:layout_above="@+id/content"
         android:layout_alignParentRight="true"
         android:layout_alignParentTop="true"
-        android:src="@drawable/love_top"
         android:visibility="gone" />
 
 
+    <!--android:src="@drawable/love_top"-->
     <TextView
         android:id="@+id/name"
         android:layout_width="wrap_content"
@@ -76,11 +78,11 @@
         android:layout_height="17dp"
         android:layout_alignTop="@+id/name"
         android:layout_toEndOf="@+id/screenName"
-        android:src="@drawable/ic_lock_black"
+
         android:visibility="invisible"
         tools:ignore="RtlCompat" />
     <!-- 콘텐트-->
-
+    <!--android:src="@drawable/ic_lock_black"-->
     <RelativeLayout
         android:id="@+id/content"
         android:layout_width="wrap_content"
@@ -131,7 +133,7 @@
                     android:textSize="13sp" />
 
                 <TextView
-                    android:id="@+id/QContent"
+                    android:id="@+id/qouteContent"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_below="@+id/qouteName"
